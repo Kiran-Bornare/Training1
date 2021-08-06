@@ -1,0 +1,163 @@
+!DOCTYPE html>  
+<html>  
+<head>  
+<meta name="viewport" content="width=device-width, initial-scale=1">  
+<style>  
+body{  
+  font-family: Calibri, Helvetica, sans-serif;  
+  background-color: pink;  
+}  
+.container {  
+    padding: 50px;  
+  background-color: lightblue;  
+}  
+  
+input[type=text], input[type=password], textarea {  
+  width: 100%;  
+  padding: 15px;  
+  margin: 5px 0 22px 0;  
+  display: inline-block;  
+  border: none;  
+  background: #f1f1f1;  
+}  
+input[type=text]:focus, input[type=password]:focus {  
+  background-color: orange;  
+  outline: none;  
+}  
+ div {  
+            padding: 10px 0;  
+         }  
+hr {  
+  border: 1px solid #f1f1f1;  
+  margin-bottom: 25px;  
+}  
+.registerbtn {  
+  background-color: #4CAF50;  
+  color: white;  
+  padding: 16px 20px;  
+  margin: 8px 0;  
+  border: none;  
+  cursor: pointer;  
+  width: 100%;  
+  opacity: 0.9;  
+}  
+.registerbtn:hover {  
+  opacity: 1;  
+}  
+</style>  
+</head>  
+<body>  
+<form>  
+  <div class="container">  
+  <center>  <h1> Resume</h1> </center>  
+  <hr>  
+  <label> Firstname </label>   
+<input type="text" name="firstname" placeholder= "Firstname" size="15" required />   
+<label> Middlename: </label>   
+<input type="text" name="middlename" placeholder="Middlename" size="15" required />   
+<label> Lastname: </label>    
+<input type="text" name="lastname" placeholder="Lastname" size="15"required /> 
+<label> Firstname </label>   
+<input type="text" name=FatherName placeholder= "FatherName" size="15" required />   
+<label> MotherName</label> 
+<input type="text" name=MotherName placeholder= "MotherName" size="15" required />   
+
+   
+<div>  
+<label>   
+Qualification :  
+</label>   
+  
+<select>  
+<option value="Qualification">Course</option>  
+<option value="BCA">BE</option>  
+<option value="BBA">BE.Tech</option>  
+<option value="B.Tech">B.Tech</option>  
+<option value="MBA">MBA</option>  
+<option value="MCA">MCA</option>  
+<option value="M.Tech">M.Tech</option>  
+</select>  
+</div>  
+<div>  
+    <label>   
+    University Name :  
+    </label>   
+      
+    <select>  
+    <option value="University Name">Name</option>  
+    <option value="PUNE">Pune University</option>  
+    <option value="BOMBAY">MUMBAI University</option>  
+    <option value="KANPUR">KANPUR University</option>  
+     
+    </select>  
+    </div>  
+<div>  
+<label>   
+Gender :  
+</label><br>  
+<input type="radio" value="Male" name="gender" checked > Male   
+<input type="radio" value="Female" name="gender"> Female   
+<input type="radio" value="Other" name="gender"> Other  
+  
+</div>  
+<label>   
+Phone :  
+</label>  
+<input type="text" name="country code" placeholder="Country Code"  value="+91" size="2"/>   
+<input type="text" name="phone" placeholder="phone no." size="10"/ required>   
+Current Address :  
+<textarea cols="80" rows="5" placeholder="Current Address" value="address" required>  
+</textarea>  
+<div>  
+    <label>   
+    Nationality :  
+    </label>   
+      
+    <select>  
+    <option value="Nationality">NAME</option>  
+    <option value="India>IND</option>  
+    <option value="USA">USA</option>  
+    <option value="JAPAN">JAPAN</option>  
+    <option value="UK">UK</option>  
+    <option value="CHINA">CHINA</option>  
+    <option value="AUSTROLIA">"AUSTROLIA</option>  
+    </select>  
+    </div>  
+    <div>   <br> 
+ <label for="email"><b>Email</b></label>  
+ <input type="text" placeholder="Enter Email" name="email" required>  
+  
+    <label for="psw"><b>LinkedID</b></label>  
+    <input type="password" placeholder="URL" required>  
+    <div>  
+        <label>   
+      Technical Skills :  
+        </label>   
+          
+        <select>  
+        <option value="Technical Skills">Skills</option>  
+        <option value="Java">Java</option>  
+        <option value="C">C</option>  
+        <option value="CPP">CPP</option>  
+        <option value="PHP">PHP</option>  
+        <option value="ANGULAR">ANGULAR</option>  
+        <option value="PYTHON">PUTHON</option>  
+        </select>  
+        </div>  
+        <div>  
+        <label>   
+            <div>   <br> 
+                <label for="EXTRA SKILL"><b>SKILL</b></label>  
+                <input type="text" placeholder="EXTRA SKILL" name="Technical skills" required>  
+                <label>   
+                    <div>   <br> 
+                        <label for=""><b>EXTRA CURRICULAT ACTIVITIES</b></label>  
+                        <input type="text" placeholder="EXTRA CURRICULAT ACTIVITIES" name=" skills" required>  
+
+  
+    
+    <button type="submit" class="registerbtn">SUBMIT</button>  
+      
+</form>  
+</body>  
+</html>
