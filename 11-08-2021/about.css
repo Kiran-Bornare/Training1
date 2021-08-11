@@ -1,0 +1,39 @@
+
+.body{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f1f1f1
+}
+.about-section{
+    background-image: url(pic.jpg.jpg);
+    background-size: 55%;
+    background-color: white;
+    overflow: hidden;
+    padding: 10px 0;
+
+}
+.inner-container{
+    width: 55%;
+    float: right;
+ background-color:rgb(44, 40, 31);
+    font-weight: 900;
+
+
+}
+.text{
+    font-size: 13px;
+    color: grey;
+    line-height: 30px;
+    text-align: justify;
+    margin-bottom: 40px;
+
+}
+.skills{
+    display: flex;
+    justify-content: space-between;
+    font-weight: 700;
+    font-size: 13px;
+
+}
