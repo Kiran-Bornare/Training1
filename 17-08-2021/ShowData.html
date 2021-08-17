@@ -1,0 +1,30 @@
+<html>
+<body>
+
+<script type="text/javascript">
+
+var flag=true;
+
+function showdata() {
+
+var cform="<form action='Comment'> Enter Name:<br><input type='text' name='name' /> ";
+     document.getElementById('data').innerHTML= "Data Loaded";
+
+if(flag) {
+
+document.getElementById("data").innerHTML=cform;
+
+flag=false;
+
+}else{
+
+document.getElementById("data").innerHTML="";
+
+flag=true;
+}
+}
+</script>
+<div id='data'></div>
+<input type="button" value="Click Me" onclick="showdata()">
+</body>
+</html>

@@ -1,0 +1,29 @@
+<html>
+
+<body>
+
+<p>This is a paragraph of text 1.</p>
+
+<p>This is a paragraph of text 2.</p>
+
+<script type="text/javascript">
+
+//Single Element Color Change
+
+document.getElementsByTagName('p')[1].style.backgroundColor='red';
+
+//All Element Color Change
+
+var matches = document.getElementsByTagName("p");
+
+for(var elem in matches) {     //do not chnge variable
+
+matches[elem].style.background ="yellow"
+
+}
+
+</script>
+
+</body>
+
+</html>
