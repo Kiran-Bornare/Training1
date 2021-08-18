@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <script>
+            function counter()
+            {
+                var count = parseInt(document.getElementById('count').value);
+                count++;
+                document.getElementById("count").value = count; 
+                console.log(count);
+            }
+        </script>
+    </head>
+    <body>
+        Enter Value:<input type="text" id="count" name="count" value = "0"/><br/><br/><br/>
+        <button value="Click" onclick = "counter()" >Click me</button>
+    </body>
+</html>

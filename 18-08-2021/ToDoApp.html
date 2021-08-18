@@ -1,0 +1,36 @@
+<html>
+<head>
+    <body>
+        <div id="dir">
+        <input type="text" id="Name" placeholder="Enter value">
+        <p><button onclick="Dir()" type="button">CLICK</button></p>
+        </div>
+<script>
+    function Dir()
+ {
+
+  var li = document.createElement("li");
+  var inputValue = document.getElementById("Name").value;
+  var t = document.createTextNode(inputValue);
+  li.appendChild(t);
+  if (inputValue === '')
+   {
+    alert("You must write something!");
+  } else {
+    document.getElementById("Demo").appendChild(li);
+  }
+  document.getElementById("myInput").value = "";
+  }
+
+</script>
+
+</head>
+
+<ul id="Demo">
+  <li>Kiran</li>
+  <li>Bornare</li>
+  <li>Nashik</li>
+ 
+</ul>
+</body>
+</html>
