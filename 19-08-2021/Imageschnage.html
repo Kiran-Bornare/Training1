@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <body style="text-align: center" >
+            <p>
+                <image id="face" src="img1.jpg.jpg" alt="img"></image>
+            </p>
+            <p>
+                <label id="attention" style="font-size: xx-large;">Welcome</label>
+            </p>
+       
+        <script>
+        function makeHappy()
+        {
+            document.getElementById('face').src = "img2.jpg.jpg";
+            document.getElementById("attention").innerHTML = "Thank you so much!!";
+        }
+        function makenormal()
+        {
+            document.getElementById('face').src = "img4.jpg.jpg";
+            document.getElementById("attention").innerHTML = "Thank you so much!!";
+        }
+        function makeSad()
+        {
+            document.getElementById('face').src = "img1.jpg.jpg";
+            document.getElementById("attention").innerHTML = "Welcome!!";
+        }
+        document.getElementById('face').addEventListener('mouseover',makeHappy);
+        document.getElementById('face').addEventListener('mouseout',makeSad);
+        document.getElementById('face').addEventListener('mousedown',makenormal);
+        
+        </script>
+        </body>
+    </head>
+</body>
+</html>

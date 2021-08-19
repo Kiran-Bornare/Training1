@@ -1,0 +1,39 @@
+<html>
+    <body>
+        <div id="id1">
+            <label>Lorem ipsum dolor sit amet consectetur adipisicing elit.<br>
+            Natus, aliquam explicabo laboriosam totam reprehenderit,<br>
+            nesciunt laudantium alias odit eveniet sint vitae delectus <br>
+            ex aliquid itaque reiciendis numquam deserunt aspernatur harum?<br></label>
+        </div><br><br><br>
+        <div id="id2">
+            <label>Welcome to JS<br></label>
+        </div><br><br>
+        <div id="id3">
+            <label>Lorem ipsum dolor sit amet consectetur adipisicing elit.<br>
+                Natus, aliquam explicabo laboriosam totam reprehenderit,<br>
+                nesciunt laudantium alias odit eveniet sint vitae delectus <br>
+                ex aliquid itaque reiciendis numquam deserunt aspernatur harum?<br></label>
+        </div>
+    </body>
+    <script>
+        document.getElementById("id1").addEventListener("click",myfunction1);
+        function myfunction1()
+        {
+            var text = document.getElementById("id1")
+            text.style.backgroundColor = "cyan";
+        }
+        document.getElementById("id2").addEventListener("dblclick",myfunction2);
+        function myfunction2()
+        {
+            var text = document.getElementById("id2")
+            text.style.color="red"
+        }
+        document.getElementById("id3").addEventListener("mouseover",myfunction3);
+        function myfunction3()
+        {
+            var text = document.getElementById("id3")
+            text.style.fontStyle="italic";
+        }
+    </script>
+</html>

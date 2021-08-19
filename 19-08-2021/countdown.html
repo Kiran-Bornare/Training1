@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <body>
+            
+            <p id="demo">20</p>
+                <button onclick="clock()">Start counter</button>
+                <button onclick="clearInterval(myTimer)">Stop counter</button>
+             <script>
+               var myTimer;
+
+            function clock() {
+            myTimer = setInterval(myClock, 1000);
+            var c = 20;
+
+            function myClock() {
+             document.getElementById("demo").innerHTML = --c;
+             if (c == 0) {
+             clearInterval(myTimer);
+             alert("Reached zero");
+           }
+         }
+       }
+            </script>
+        </body>
+    </head>
+</html>
