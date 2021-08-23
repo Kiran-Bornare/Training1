@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
+    <script src="/path/to/cdn/jquery.slim.min.js"></script> 
+    <script src="assets/js/main.js"></script>
+    <style>
+        
+img {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+              }
+    img:hover {opacity: 0.7;}
+
+#image-viewer {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 50%;
+    height: 50%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.9);
+}
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+}
+.modal-content { 
+    animation-name: zoom;
+    animation-duration: 0.2s;
+}
+@keyframes zoom {
+    from {transform:scale(0)} 
+    to {transform:scale(1)}
+}
+#image-viewer .close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+#image-viewer .close:hover,
+#image-viewer .close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 700px){
+    .modal-content {
+        width: 100%;
+    }
+}
+    </style>
+</head>
+<body>
+    <div id="image-viewer">
+        <!-- <span class="close">&times;</span> -->
+        <img class="modal-content" id="full-image">
+      </div>
+    <div class="images">
+            <img src="img1.jpg" alt="My Image" width="400" height="350" />
+            <img src="img2.jpg" alt="My Image" width="400" height="350" />
+            <img src="img3.jpg" alt="My Image" width="400" height="350" />
+            <img src="img4.jpg" alt="My Image" width="400" height="350" />
+            <img src="img5.jpg" alt="My Image" width="400" height="350" />
+    </div>    
+    <script>
+            $(".images img").click(function(){
+            $("#full-image").attr("src", $(this).attr("src"));
+            $('#image-viewer').show();
+            });
+
+            $("#image-viewer .close").click(function(){
+            $('#image-viewer').hide();
+            });
+    </script>
+</body>
+</html>

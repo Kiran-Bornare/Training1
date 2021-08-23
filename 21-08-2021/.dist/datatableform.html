@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+
+    <style>
+        #commentForm {
+            width: 500px;
+        }
+        
+        #commentForm label {
+            width: 250px;
+        }
+        
+        #commentForm label.error,
+        #commentForm input.submit {
+            margin-left: 253px;
+        }
+        
+        #signupForm {
+            width: 670px;
+        }
+        
+        #signupForm label.error {
+            margin-left: 10px;
+            width: auto;
+            display: inline;
+        }
+        
+        #newsletter_topics label.error {
+            display: none;
+            margin-left: 103px;
+        }
+        
+        .error {
+            color: red;
+        }
+    </style>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script> -->
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script>
+        $().ready(function() {
+           
+            $("#signupForm").validate({
+                rules: {
+                    firstname: "required",
+                    lastname: "required",
+                    username: {
+                        required: true,
+                        minlength: 2
+                    },
+                    password: {
+                        required: true,
+                        minlength: 5
+                    },
+                    confirm_password: {
+                        required: true,
+                        minlength: 5,
+                        equalTo: "#password"
+                    },
+                    usernumber: {
+                        required: true,
+                        minlength: 10,
+                        maxlength: 10
+                    },
+                    userage: {
+                        required: true,
+                        min: 18
+                    },
+                    date: {
+                        required: true,
+                        date: true
+                    },
+                    email: {
+                        required: true,
+                        email: true
+                    },
+                    topic: {
+                        required: "#newsletter:checked",
+                        minlength: 2
+                    },
+                    agree: "required"
+                },
+                messages: {
+                    firstname: "Please enter your firstname",
+                    lastname: "Please enter your lastname",
+                    username: {
+                        required: "Please enter a username",
+                        minlength: "Your username must consist of at least 2 characters"
+                    },
+                    usernumber: {
+                        required: "Please enter a usernumber",
+                        minlength: "Your usernumber must consist of at 10 characters",
+                        maxlength: "Your usernumber must consist of at 10 characters"
+                    },
+                    password: {
+                        required: "Please provide a password",
+                        minlength: "Your password must be at least 5 characters long"
+                    },
+                    confirm_password: {
+                        required: "Please provide a password",
+                        minlength: "Your password must be at least 5 characters long",
+                        equalTo: "Please enter the same password as above"
+                    },
+                    userage: {
+                        required: "Please provide a age",
+                        minlength: "Your age must be 18"
+                    },
+                    date: {
+                        required: "Date is required",
+                        date: "enter date only"
+                    },
+                    email: "Please enter a valid email address",
+                    agree: "Please accept our policy",
+                    topic: "Please select at least 2 topics"
+                }
+            });
+
+            
+            $("#username").focus(function() {
+                var firstname = $("#firstname").val();
+                var lastname = $("#lastname").val();
+                if (firstname && lastname && !this.value) {
+                    this.value = firstname + "." + lastname;
+                }
+            });
+
+            
+            var newsletter = $("#newsletter");
+          
+            var inital = newsletter.is(":checked");
+            var topics = $("#newsletter_topics")[inital ? "removeClass" : "addClass"]("gray");
+            var topicInputs = topics.find("input").attr("disabled", !inital);
+            
+            newsletter.click(function() {
+                topics[this.checked ? "removeClass" : "addClass"]("gray");
+                topicInputs.attr("disabled", !this.checked);
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $("#signupForm").validate();
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable();
+        });
+    </script>
+
+
+</head>
+
+<body style="background: pink;">
+    <form class="cmxform" id="signupForm" method="get" action="">
+        <fieldset>
+            <legend style="font-size: larger;">Registration Form</legend>
+            
+            <p>
+                <label for="firstname">Firstname</label>
+                <input id="firstname" name="firstname" type="text">
+            </p>
+            <p>
+                <label for="lastname">Lastname</label>
+                <input id="lastname" name="lastname" type="text">
+            </p>
+            <p>
+                <label for="username">Username</label>
+                <input id="username" name="username" type="text">
+            </p>
+
+            <p>
+                <label for="usernumber">Usernumber</label>
+                <input id="usernumber" name="usernumber" type="number" min="0">
+            </p>
+            <p>
+                <label for="password">Password</label>
+                <input id="password" name="password" type="password">
+            </p>
+            <p>
+                <label for="confirm_password">Confirm pwd</label>
+                <input id="confirm_password" name="confirm_password" type="password">
+            </p>
+            <p>
+                <label for="date">date</label>
+                <input id="date" name="date" type="date">
+            </p>
+
+            <p>
+                <label for="userage">userage</label>
+                <input id="userage" name="userage" type="number" min="18">
+            </p>
+            <p>
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email">
+            </p>
+
+            <p>
+                <label for="file2">Select any image file</label>
+                <input type="file" id="file2" name="file2" class="required" accept="image/*">
+            </p>
+            <p>
+                <input class="submit" type="submit" value="Submit">
+            </p>
+        </fieldset>
+    </form>
+
+
+    <h1>DataTable</h1>
+    <table id="example" class="display" style="width:120%">
+        <thead>
+            <tr>
+                <th>UserId</th>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Office</th>
+                <th>Age</th>
+                <th>Start date</th>
+                <th>Salary</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1001</td>
+                <td>kiran</td>
+                <td>Software </td>
+                <td>MH</td>
+                <td>23</td>
+                <td>2008/19/6</td>
+                <td>19,500</td>
+            </tr>
+            <tr>
+                <td>1002</td>
+                <td>kishor</td>
+                <td>developer</td>
+                <td>Nsk</td>
+                <td>31</td>
+                <td>2001/10/26</td>
+                <td>122,500</td>
+            </tr>
+            <tr>
+                <td>1003</td>
+                <td>Suchit</td>
+                <td>support</td>
+                <td>Mumbai</td>
+                <td>21</td>
+                <td>2019/10/26</td>
+                <td>42,500</td>
+            </tr>
+            <tr>
+                <td>1004</td>
+                <td>mohit</td>
+                <td>Team Leader</td>
+                <td>Maharashtra</td>
+                <td>20</td>
+                <td>2021/10/26</td>
+                <td>18,500</td>
+            </tr>
+            <tr>
+                <td>1004</td>
+                <td>rahul</td>
+                <td>Team Leader</td>
+                <td>Gujrat</td>
+                <td>22</td>
+                <td>2011/10/26</td>
+                <td>80,500</td>
+            </tr>
+            <tr>
+                <td>1004</td>
+                <td>radhe</td>
+                <td>tester</td>
+                <td>Dattwadi</td>
+                <td>13</td>
+                <td>2011/10/26</td>
+                <td>80,500</td>
+            </tr>
+            <tr>
+                <td>1004</td>
+                <td>mayur</td>
+                <td>Team managment</td>
+                <td>maharashtra</td>
+                <td>19</td>
+                <td>2011/10/26</td>
+                <td>80,500</td>
+            </tr>
+            <tr>
+                <td>1005</td>
+                <td>sachin</td>
+                <td>tester</td>
+                <td>Sinnar</td>
+                <td>23</td>
+                <td>2011/10/26</td>
+                <td>80,500</td>
+            </tr>
+            <tr>
+                <td>1006</td>
+                <td>rahul</td>
+                <td>developer</td>
+                <td>Kothrud</td>
+                <td>27</td>
+                <td>2011/10/26</td>
+                <td>80,500</td>
+            </tr>
+            <tr>
+                <td>1007</td>
+                <td>dnyneshwar</td>
+                <td>Team Leader</td>
+                <td>Shirdi</td>
+                <td>34</td>
+                <td>2011/10/26</td>
+                <td>80,500</td>
+            </tr>
+            <tr>
+                <td>1008</td>
+                <td>pinks</td>
+                <td>Team support</td>
+                <td>Niphad</td>
+                <td>31</td>
+                <td>2011/10/26</td>
+                <td>80,500</td>
+            </tr>
+            <tr>
+                <td>1009</td>
+                <td>rohit</td>
+                <td>manager</td>
+                <td>Nashik</td>
+                <td>22</td>
+                <td>2011/10/26</td>
+                <td>80,500</td>
+            </tr> 
+            <tr>
+                <td>1010</td>
+                <td>ram</td>
+                <td>Team Leader</td>
+                <td>Aurangabadd</td>
+                <td>31</td>
+                <td>2011/10/26</td>
+                <td>80,500</td>
+            </tr>
+            <tr> <td>1011</td>
+                <td>shubham</td>
+                <td>Team Leader</td>
+                <td>Satana</td>
+                <td>46</td>
+                <td>2011/10/26</td>
+                <td>80,500</td>
+            </tr>
+            <tr> <td>1012</td>
+                <td>mohit</td>
+                <td>Team Leader</td>
+                <td>maharashtra</td>
+                <td>26</td>
+                <td>2011/10/26</td>
+                <td>80,500</td>
+            </tr>
+
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>UserId</th>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Office</th>
+                <th>Age</th>
+                <th>Start date</th>
+                <th>Salary</th>
+                
+            </tr>
+        </tfoot>
+    </table>
+
+
+</html>
