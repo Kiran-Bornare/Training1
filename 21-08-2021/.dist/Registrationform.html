@@ -7,106 +7,89 @@
     <link rel="stylesheet" href="css/screen.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.js"></script>
-
+    <link rel="stylesheet" type="text/css" href="date/jquery-ui.min.css">
+    
+    
     <script>
+         $(document).ready(function() {
+                $(function() {
+                    $("#dob").datepicker();
+                });
+                // Timepicker
+                $('#timepicker').timepicker({
+                    timeFormat: 'h:mm p',
+                    interval: 60,
+                    minTime: '10',
+                    maxTime: '6:00pm',
+                    defaultTime: '11',
+                    startTime: '10:00',
+                    dynamic: false,
+                    dropdown: true,
+                    scrollbar: true
+                });
+            });
         $().ready(function() {
            
             $("#signupForm").validate({
                 rules: {
-                    firstname: "required",
-                    lastname: "required",
-                    username: {
+                    Name: {
                         required: true,
-                        minlength: 2
-                    },
-                    password: {
-                        required: true,
-                        minlength: 5
-                    },
-                    confirm_password: {
-                        required: true,
-                        minlength: 5,
-                        equalTo: "#password"
-                    },
-                    usernumber: {
-                        required: true,
-                        minlength: 10,
+                        minlength: 3,
                         maxlength: 10
                     },
-                    userage: {
+                
+                    Mobile : {
                         required: true,
-                        min: 18
+                        maxlength: 10,
+                        minlength: 10
+                       
                     },
-                    date: {
-                        required: true,
-                        date: true
-                    },
+                   
                     email: {
                         required: true,
                         email: true
                     },
-                    topic: {
-                        required: "#newsletter:checked",
-                        minlength: 2
-                    },
-                    agree: "required"
+                    add: {
+                       required: true,
+                        maxlength: 160
                 },
                 messages: {
-                    firstname: "Please enter your firstname",
-                    lastname: "Please enter your lastname",
-                    username: {
-                        required: "Please enter a username",
-                        minlength: "Your username must consist of at least 2 characters"
+                    Name: {
+                        required:"Please enter your name",
+                        minlength: "your name must be min 3 characters",
+                        maxlength: "your name must be max 10 characters"
                     },
-                    usernumber: {
-                        required: "Please enter a usernumber",
-                        minlength: "Your usernumber must consist of at 10 characters",
-                        maxlength: "Your usernumber must consist of at 10 characters"
-                    },
-                    password: {
-                        required: "Please provide a password",
-                        minlength: "Your password must be at least 5 characters long"
-                    },
-                    confirm_password: {
-                        required: "Please provide a password",
-                        minlength: "Your password must be at least 5 characters long",
-                        equalTo: "Please enter the same password as above"
-                    },
-                    userage: {
-                        required: "Please provide a age",
-                        minlength: "Your age must be 18"
-                    },
-                    date: {
-                        required: "Date is required",
-                        date: "enter date only"
+                   
+                   
+                    Mobile : {
+                        required: "Please Enter mobile no",
+                        minlength: "Your password must be at least 10 characters small",
+                        maxlength: "Your password must be at least 10 characters long"
+    
                     },
                     email: "Please enter a valid email address",
                     agree: "Please accept our policy",
                     topic: "Please select at least 2 topics"
+                    },
+                    add: {
+                        required: "please enter address",
+                        maxlength: "your address must be at least 160 characters"
+                    }
                 }
             });
 
             
             $("#username").focus(function() {
-                var firstname = $("#firstname").val();
-                var lastname = $("#lastname").val();
-                if (firstname && lastname && !this.value) {
-                    this.value = firstname + "." + lastname;
+                var Name = $("#Name").val();
+                
+                if (firstname && !this.value) {
+                    this.value = Name + "." ;
                 }
             });
 
-            
-            var newsletter = $("#newsletter");
-          
-            var inital = newsletter.is(":checked");
-            var topics = $("#newsletter_topics")[inital ? "removeClass" : "addClass"]("gray");
-            var topicInputs = topics.find("input").attr("disabled", !inital);
-            
-            newsletter.click(function() {
-                topics[this.checked ? "removeClass" : "addClass"]("gray");
-                topicInputs.attr("disabled", !this.checked);
-            });
+         
         });
+        
     </script>
     <style>
         #commentForm {
@@ -140,62 +123,170 @@
         .error {
             color: red;
         }
+        
     </style>
 </head>
 
 <body style="background-color:pink;">
     <form class="cmxform" id="signupForm" method="get" action="">
         <fieldset>
-            <legend style="font-size: larger;">Registration Form</legend>
+            <legend style="font-size: larger;">SignupForm with validation</legend>
             
             <p>
-                <label for="firstname">Firstname</label>
-                <input id="firstname" name="firstname" type="text">
+                <label for="Name">Name</label>
+                <input id="Name" name="Name" type="text">
             </p>
+            
             <p>
-                <label for="lastname">Lastname</label>
-                <input id="lastname" name="lastname" type="text">
+                <label for="Mobile ">Mobile </label>
+                <input id="Number" name="Mobile" id="mobile" placeholder="1234567890" maxlength="10" minlength="10" required>
             </p>
-            <p>
-                <label for="username">Username</label>
-                <input id="username" name="username" type="text">
-            </p>
+           
+           
 
-            <p>
-                <label for="usernumber">Usernumber</label>
-                <input id="usernumber" name="usernumber" type="number" min="0">
-            </p>
-            <p>
-                <label for="password">Password</label>
-                <input id="password" name="password" type="password">
-            </p>
-            <p>
-                <label for="confirm_pwd">Confirm pwd</label>
-                <input id="confirm_password" name="confirm_password" type="password">
-            </p>
-            <p>
-                <label for="date">date</label>
-                <input id="date" name="date" type="date">
-            </p>
-
-            <p>
-                <label for="userage">userage</label>
-                <input id="userage" name="userage" type="number" min="18">
-            </p>
+            
             <p>
                 <label for="email">Email</label>
-                <input id="email" name="email" type="email">
+                <input id="email" name="email" id="email">
             </p>
-
             <p>
-                <label for="file2">Select any image file</label>
-                <input type="file" id="file2" name="file2" class="required" accept="image/*">
+                <label for="address">Address</label>
+                <textarea name="add" id="add"></textarea>
+                <!-- <input id="address" name="address" type="text"> -->
             </p>
+            
+
+
             <p>
                 <input class="submit" type="submit" value="Submit">
             </p>
         </fieldset>
     </form>
-</body>
+    </body>
+    <body>
+      <h3>About Me</h3>
+        <div class="container" style="background-color: gray; width: 66%; height: 10%; ">
+            <textarea name="content"></textarea>
+        </div>
+    
+        <script src="ckeditor/ckeditor.js"></script>
+        <script>
+            CKEDITOR.replace('content');
+        </script></body>
 
+         
+      <body>
+          <head>   
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
+        </head>
+
+       
+       <h3>City</h3>
+        <select>
+            <option>Nashik</option>
+            <option>Mumbai</option>
+            <option>Pune</option>
+            <option>Nagpur</option>
+            <option>Yeola</option>
+            
+        </select>
+        <br><br>
+        <h3>Select multiple City</h3>
+        <select multiple>
+            <option>Nashik</option>
+            <option>Mumbai</option>
+            <option>Pune</option>
+            <option>Nagpur</option>
+            <option>Yeola</option>
+            
+        </select>
+    </head>
+</body>   
+    <body>
+    
+        
+       <h3>Hobby</h3>
+        <select>
+            <option>Investing</option>
+            <option>Thrifting</option>
+            <option>Reading</option>
+            <option>Rock Sport</option>
+            <option>Car Restoration</option>
+            
+        </select>
+        <br><br>
+        <h3>Select multiple Hobby</h3>
+        <select multiple>
+            <option>Investing</option>
+            <option>Thrifting</option>
+            <option>Reading</option>
+            <option>Rock Sport</option>
+            <option>Car Restoration</option>
+            
+        </select>
+    </body>
+    
+    
+    <script>
+        $(document).ready(function () {
+            $("select").chosen({ width: "200px"  });
+        });
+    </script>
+    </head>
+    <body>
+        <h3>Introduction</h3>
+          <div class="container" style="background-color: gray; width: 51%; height: 10%; ">
+              <textarea name="content"></textarea>
+          </div>
+          <script src="https://cdn.ckeditor.com/4.15.1/standard-all/ckeditor.js"></script>
+          <script src="https://cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>
+          <script src="ckeditor1/ckeditor.js"></script>
+          <script>
+              CKEDITOR.replace('content');
+          </script></body>
+    <body>
+        <h3 style="text-transform:uppercase; text-align: left;">date picker</h3>
+        <form>
+            <fieldset>
+                <legend align="bottam" style="text-transform: uppercase;font-size: 1.6em;">datepicker</legend>
+                D.O.B:   <input type="text" size="30" class="form-control" id="datepicker"><br>
+                
+            </fieldset>
+        </form>
+        <script src="date/jquery-3.6.0.min.js"></script>
+        <script src="date/jquery-ui.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $('#datepicker').datepicker({
+                    dateFormat:"dd-mm-yy",
+                    changeMonth:true,
+                    changeYear:true
+                });
+            })
+        </script>
+    </body>
+         
+    <head>
+        
+            <h3>Gallary</h3>
+    </head>
+    <body>
+        <a href="img1.jpg" data-lightbox="image-1" data-title="Image About Nature"><img src="Img1.jpg" height="100px" width="150px"></a>
+        <a href="Img2.jpg" data-lightbox="image-1" data-title="Image About Nature"><img src="Img2.jpg" height="100px" width="150px"></a>
+        <a href="Img3.jpg" data-lightbox="image-1" data-title="Image About Nature"><img src="Img3.jpg" height="100px" width="150px"></a>
+        <a href="Img4.jpg" data-lightbox="image-1" data-title="Image About Nature"><img src="Img4.jpg" height="100px" width="150px"></a>
+        <a href="img5.jpg" data-lightbox="image-1" data-title="Image About Nature"><img src="img5.jpg" height="100px" width="150px"></a>
+        
+        <script src = "lightbox.js"></script>
+        <script>
+            lightbox.option({
+              'resizeDuration': 160,
+              'wrapAround': true
+            })
+        </script>
+    </body>
+   
+    
 </html>
+

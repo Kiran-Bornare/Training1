@@ -1,0 +1,32 @@
+<html>
+    <head>
+        
+    </head>
+    <script>
+    var Calculator = function () {
+        this.amount = 0;
+      }
+      
+      Calculator.prototype.add = function (n) {
+        this.amount += n;
+        return this;
+      };
+      
+      Calculator.prototype.subtract = function (n) {
+        this.amount -= n;
+        return this;
+      };
+      
+      Calculator.prototype.getAmount = function () {
+        return this.amount;
+      };
+      
+      var calculator = new Calculator();
+      
+      var amt = calculator.add(5).add(10).subtract(1).subtract(2).getAmount();
+      console.log(amt);
+    </script>
+<body>
+
+</body>
+</html>
