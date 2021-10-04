@@ -1,0 +1,35 @@
+<html>
+
+<head>
+
+<script>
+
+function AjaxCall() {
+
+//Create an Object
+
+var xhttp = new XMLHttpRequest();
+ xhttp.onreadystatechange = function(){
+
+    if(xhttp.readyState == 4 && xhttp.status == 200) {
+         document.getElementById("mydata").innerHTML = xhttp.responseText;
+    }
+
+};
+
+xhttp.open("GET","file1.txt", true);
+
+xhttp.send();
+}
+
+</script>
+
+</head>
+
+<body>
+
+<div id="mydata"></div>
+
+<input type="button" onclick="AjaxCall()" value="Ajax Load" >
+</body>
+</html>

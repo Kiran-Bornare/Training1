@@ -727,7 +727,7 @@
     </html> -->
      <!-- ********************$("div[class != 'myCls']")	Selects <div> elements which do not have class attribute or value does not equal to myCls.************************-->
     
-        <!DOCTYPE html>
+        <!-- <!DOCTYPE html>
         <html>
         <head>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -755,4 +755,671 @@
             </span>
         </body>
         
-        </html>
+        </html> -->
+
+
+        <!-- ------------ -- Hierarchy---------------------------------------------------------- -->
+        <!-- Selects all direct child elements specified by "child" of elements specified by "parent" -->
+      <!-- parent and gt child -->
+ <!-- <!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>child demo</title>
+  <style>
+  body {
+    font-size: 14px;
+  }
+    </style>
+  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+</head>
+<body>
+ 
+<ul class="topnav">
+  <li>Item 1</li>
+  <li>Item 2
+    <ul>
+    <li>Nested item 1</li>
+    <li>Nested item 2</li>
+    <li>Nested item 3</li>
+    </ul>
+  </li>
+  <li>Item 3</li>
+</ul>
+ 
+<script>
+$( "ul.topnav > li" ).css( "border", "3px double red" );
+</script>
+ 
+</body>
+</html> -->
+<!-- 
+pre + next element Finds all inputs that are next to a label -->
+<!-- <!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>next adjacent demo</title>
+  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+</head>
+<body>
+ 
+<form>
+  <label for="name">Name:</label>
+  <input name="name" id="name">
+  <fieldset>
+    <label for="newsletter">Newsletter:</label>
+    <input name="newsletter" id="newsletter">
+  </fieldset>
+</form>
+<input name="none">
+ 
+<script>
+$( "label + input" ).css( "color", "blue" ).val( "Labeled!" );
+</script>
+ 
+</body>
+</html> -->
+
+<!-- 
+preveous and sibling->Selects all sibling elements that follow after the "prev" element, have the same parent, and match the filtering "siblings" selector -->
+<!-- <!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>next siblings demo</title>
+  <style>
+  div, span {
+    display: block;
+    width: 80px;
+    height: 80px;
+    margin: 5px;
+    background: #bfa;
+    float: left;
+    font-size: 14px;
+  }
+  div#small {
+    width: 60px;
+    height: 25px;
+    font-size: 12px;
+    background: #fab;
+  }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+</head>
+<body>
+ 
+<div>div (doesn't match since before #prev)</div>
+<span id="prev">span#prev</span>
+<div>div sibling</div>
+<div>div sibling <div id="small">div niece</div></div>
+<span>span sibling (not div)</span>
+<div>div sibling</div>
+ 
+<script>
+$( "#prev ~ div" ).css( "border", "3px groove blue" );
+</script>
+ 
+</body>
+</html> -->
+
+    <!-- BASIC FILTER
+    Anumated->Select all elements that are in the progress of an animation at the time the selector is run -->
+    <!-- <!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>animated demo</title>
+  <style>
+  div {
+    background: yellow;
+    border: 1px solid #AAA;
+    width: 80px;
+    height: 80px;
+    margin: 0 5px;
+    float: left;
+  }
+  div.colored {
+    background: green;
+  }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+</head>
+<body>
+ 
+<button id="run">Run</button>
+ 
+<div></div>
+<div id="mover"></div>
+<div></div>
+ 
+<script>
+$( "#run" ).click(function() {
+  $( "div:animated" ).toggleClass( "colored" );
+});
+ 
+function animateIt() {
+  $( "#mover" ).slideToggle( "slow", animateIt );
+}
+ 
+animateIt();
+</script>
+ 
+</body>
+</html> -->
+
+<!-- 
+eq ()->Select the element at index n within the matched set. -->
+
+<!-- <!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>eq demo</title>
+  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+</head>
+<body>
+ 
+<table border="1">
+  <tr><td>TD #0</td><td>TD #1</td><td>TD #2</td></tr>
+  <tr><td>TD #3</td><td>TD #4</td><td>TD #5</td></tr>
+  <tr><td>TD #6</td><td>TD #7</td><td>TD #8</td></tr>
+</table>
+ 
+<script>
+$( "td:eq( 2 )" ).css( "color", "red" );
+</script>
+ 
+</body>
+</html> -->
+
+<!-- gt()->select element only for gt (4) so 4 gretter all value will be apply a gt method
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>gt demo</title>
+  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+</head>
+<body>
+ 
+<table border="1">
+  <tr><td>TD #0</td><td>TD #1</td><td>TD #2</td></tr>
+  <tr><td>TD #3</td><td>TD #4</td><td>TD #5</td></tr>
+  <tr><td>TD #6</td><td>TD #7</td><td>TD #8</td></tr>
+</table>
+ 
+<script>
+$( "td:gt(4)" ).css( "backgroundColor", "yellow" );
+$( "td:gt(-2)" ).css( "color", "red" );
+</script>
+ 
+</body>
+</html> -->
+
+<!-- header()-> is used to Adds a background and text color to all the headers on the page.
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>header demo</title>
+  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+</head>
+<body>
+ 
+<h1>Header 1</h1>
+<p>Contents 1</p>
+<h2>Header 2</h2>
+<p>Contents 2</p>
+ 
+<script>
+$( ":header" ).css({ background: "#ccc", color: "blue" });
+</script>
+ 
+</body>
+</html> -->
+
+
+<!-- lang()->Color div elements according to their language.
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>lang demo</title>
+  <style>
+  body {
+    background-color: #ccc;
+  }
+  h3 {
+    margin: .25em 0;
+  }
+  div {
+    line-height: 1.5em
+  }
+  .usa {
+    background-color: #f00;
+    color: #fff;
+  }
+  .usa .usa {
+    background-color: #fff;
+    color: #000;
+  }
+  .usa .usa .usa {
+    background-color: #00f;
+    color: #fff;
+  }
+  .spain {
+    background-color: #f00;
+    color: #ff0;
+  }
+  .spain .spain {
+    background-color: #ff0;
+    color: #f00;
+    line-height: 3em;
+  }
+  .spain .spain .spain {
+    background-color: #f00;
+    color: #ff0;
+    line-height: 1.5em;
+  }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+</head>
+<body>
+ 
+<h3>USA</h3>
+<div lang="en-us">red
+  <div>white
+    <div>and blue</div>
+  </div>
+</div>
+<h3>España</h3>
+<div lang="es-es">rojo
+  <div>amarillo
+    <div>y rojo</div>
+  </div>
+</div>
+ 
+<script>
+$( "div:lang(en-us)" ).addClass( "usa" );
+$( "div:lang(es-es)" ).addClass( "spain" );
+</script>
+ 
+</body>
+</html> -->
+
+<!-- last()->find the last row
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>last demo</title>
+  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+</head>
+<body>
+ 
+<table>
+  <tr><td>First Row</td></tr>
+  <tr><td>Middle Row</td></tr>
+  <tr><td>Last Row</td></tr>
+</table>
+ 
+<script>
+$( "tr" ).last().css({ backgroundColor: "yellow", fontWeight: "bolder" });
+</script>
+ 
+</body>
+</html> -->
+
+
+<!-- it()-> select 1st 4th element select
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>lt demo</title>
+  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+</head>
+<body>
+ 
+<table border="1">
+  <tr><td>TD #0</td><td>TD #1</td><td>TD #2</td></tr>
+  <tr><td>TD #3</td><td>TD #4</td><td>TD #5</td></tr>
+  <tr><td>TD #6</td><td>TD #7</td><td>TD #8</td></tr>
+</table>
+ 
+<script>
+$( "td:lt(4)" ).css( "backgroundColor", "yellow" );
+$( "td:lt(-2)" ).css( "color", "red" );
+</script>
+ 
+</body>
+</html> -->
+
+
+<!-- Not selector->Finds all inputs that are not checked and highlights the next sibling span. Notice there is no change when clicking the checkboxes since no click events have been linked.
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>not demo</title>
+  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+</head>
+<body>
+ 
+<div>
+  <input type="checkbox" name="a">
+  <span>Mary</span>
+</div>
+<div>
+  <input type="checkbox" name="b">
+  <span>lcm</span>
+</div>
+<div>
+  <input type="checkbox" name="c" checked="checked">
+  <span>Peter</span>
+</div>
+ 
+<script>
+$( "input:not(:checked) + span" ).css( "background-color", "yellow" );
+$( "input").attr( "disabled", "disabled" );
+</script>
+ 
+</body>
+</html> -->
+
+<!-- root selector->Display the tag name of the root element
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>root demo</title>
+  <style>
+  span.fot {
+    color: red;
+    font-size: 120%;
+    font-style: italic;
+  }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+</head>
+<body>
+ 
+<div id="log">The root of this document is: </div>
+ 
+<script>
+$( "<b></b>" ).html( $( ":root" )[ 0 ].nodeName ).appendTo( "#log" );
+</script>
+ 
+</body>
+</html -->
+
+
+<!-- CONTENT FILTER -->
+<!-- contain->Finds all divs containing "John" and underlines them -->
+
+
+<!-- <!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>contains demo</title>
+  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+</head>
+<body>
+ 
+<div>John Resig</div>
+<div>George Martin</div>
+<div>Malcom John Sinclair</div>
+<div>J. Ohn</div>
+ 
+<script>
+$( "div:contains('John')" ).css( "text-decoration", "underline" );
+</script>
+ 
+</body>
+</html> -->
+
+<!-- EMPTY->this method is used to only empty fild display.
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>empty demo</title>
+  <style>
+  td {
+    text-align: center;
+  }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+</head>
+<body>
+ 
+<table border="1">
+  <tr><td>TD #0</td><td></td></tr>
+  <tr><td>TD #2</td><td></td></tr>
+  <tr><td></td><td>TD#5</td></tr>
+</table>
+ 
+<script>
+$( "td:empty" )
+  .text( "Was empty!" )
+  .css( "background", "rgb(255,220,200)" );
+</script>
+ 
+</body>
+</html> -->
+
+
+<!-- Has ()->this method used only div me p tag display  -->
+
+<!-- <!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>has demo</title>
+  <style>
+  .test {
+    border: 3px inset red;
+  }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+</head>
+<body>
+ 
+<div><p>Hello in a paragraph</p></div>
+<div>Hello again! (with no paragraph)</div>
+ 
+<script>
+$( "div:has(p)" ).addClass( "test" );
+</script>
+ 
+</body>
+</html> -->
+
+<!-- Parent selector->Finds all tds with children, including text.
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>parent demo</title>
+  <style>
+  td {
+    width: 40px;
+    background: green;
+  }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+</head>
+<body>
+ 
+<table border="1">
+  <tr><td>Value 1</td><td></td></tr>
+  <tr><td>Value 2</td><td></td></tr>
+</table>
+ 
+<script>
+$( "td:parent" ).fadeTo( 1500, 0.3 );
+</script>
+ 
+</body>
+</html> -->
+
+<!-- ATTRIBUTE  -->
+<!-- |Name|=value-> -->
+
+<!-- <!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>attributeContainsPrefix demo</title>
+  <style>
+  a {
+    display: inline-block;
+  }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+</head>
+<body>
+ 
+<a href="example.html" hreflang="en">Some text</a>
+<a href="example.html" hreflang="en-UK">Some other text</a>
+<a href="example.html" hreflang="english">will not be outlined</a>
+ 
+<script>
+$( "a[hreflang|='en']" ).css( "border", "3px dotted green" );
+</script>
+ 
+</body>
+</html> -->
+<!-- 
+name*=value->
+Finds all inputs with a name attribute that contains 'man' and sets the value with some text. -->
+<!-- <!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>attributeContains demo</title>
+  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+</head>
+<body>
+ 
+<input name="man-news">
+<input name="milkman">
+<input name="letterman2">
+<input name="newmilk">
+ 
+<script>
+$( "input[name*='man']" ).val( "has man in it!" );
+</script>
+ 
+</body>
+</html> -->
+
+<!-- name~=value
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>attributeContainsWord demo</title>
+  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+</head>
+<body>
+ 
+<input name="man-news">
+<input name="milk man">
+<input name="letterman2">
+<input name="newmilk">
+ 
+<script>
+$( "input[name~='man']" ).val( "mr. man is in it!" );
+</script>
+ 
+</body>
+</html> -->
+
+<!-- name$=value->Finds all inputs with an attribute name that ends with 'letter' and puts text in them
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>attributeEndsWith demo</title>
+  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+</head>
+<body>
+ 
+<input name="newsletter">
+<input name="milkman">
+<input name="jobletter">
+ 
+<script>
+$( "input[name$='letter']" ).val( "a letter" );
+</script>
+ 
+</body>
+</html> -->
+
+<!-- name=value ->this method is used to input value name and next is span tag element
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>attributeEquals demo</title>
+  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+</head>
+<body>
+ 
+<div>
+  <label>
+    <input type="radio" name="newsletter" value="Hot Fuzz">
+    <span>name?</span>
+  </label>
+</div>
+<div>
+  <label>
+    <input type="radio" name="newsletter" value="Cold Fusion">
+    <span>value?</span>
+  </label>
+</div>
+<div>
+  <label>
+    <input type="radio" name="newsletter" value="Evil Plans">
+    <span>value?</span>
+  </label>
+</div>
+ 
+<script>
+$( "input[value='Hot Fuzz']" ).next().text( "Hot Fuzz" );
+</script>
+ 
+</body>
+</html> -->
+
+<!-- select name=value ,name=value2=name and value attribute end with man or any other name
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>attributeMultiple demo</title>
+  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+</head>
+<body>
+ 
+<input id="man-news" name="man-news">
+<input name="milkman">
+<input id="letterman" name="new-letterman">
+<input name="newmilk">
+ 
+<script>
+$( "input[id][name$='man']" ).val( "only this one" );
+</script>
+ 
+</body>
+</html> -->

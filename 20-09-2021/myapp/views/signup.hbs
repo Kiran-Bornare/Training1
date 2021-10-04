@@ -1,0 +1,27 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="stylesheets/signup.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+</head>
+
+<body>
+
+    <div class="login">
+        <h1>Registeration Form</h1>
+        <form action="/signup/form" method="post" style="color: white;">
+            Name :<input type="text" name="txt1" placeholder="Name" required="required" />
+            Email :<input type="email" name="txt2" placeholder="Email" required="required" />
+            Password :<input type="password" name="txt3" placeholder="Password" required="required" />
+            Mobile :<input type="number" name="txt4" placeholder="Mobile" required="required" />
+            Gender :<br>
+            Male
+            <input type="radio" name="txt5" class="d" value="Male">
+            Female
+            <input type="radio" name="txt5" class="d" value="Female">
+            <button type="submit" class="btn btn-primary btn-block btn-large">Submit</button>
+        </form>
+    </div>
+</body>
+
+</html>

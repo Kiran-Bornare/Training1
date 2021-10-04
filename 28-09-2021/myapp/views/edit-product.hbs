@@ -1,0 +1,38 @@
+<html>
+<body>
+<form method="post" >
+    <table>
+        <tr>
+            <td>Product Name : </td>
+            <td><input type="text" name="product_name"
+                value="<%= product_array.product_name %>" required> </td>
+        </tr>
+        <tr>
+            <td>Product Details : </td>
+            <td><input type="text" name="product_details"
+                value="<%= product_array.product_name %>" required> </td>
+        </tr>
+         <tr>
+            <td>Product Price : </td>
+            <td><input type="number" name="product_price"
+                value="<%= product_array.product_price %>" required> </td>
+        </tr>
+         <tr>
+            <td>Product image : </td>
+            <td><input type="file" name="product_images"
+                value="<%= product_array.product_image %>" required> </td>
+        </tr>
+         <tr>
+            <td>Product Qty : </td>
+            <td><input type="number" name="product_Qty"
+                value="<%= product_array.product_Qty %>" required> </td>
+        </tr>
+        <tr>
+                <td> <input type="submit">
+                  <input type="button" value="Display" 
+                  onclick="window.location='display';"> </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

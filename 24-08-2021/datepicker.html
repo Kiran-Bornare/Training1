@@ -1,0 +1,26 @@
+<!DOCTYPE html>>
+<head>
+    <link rel="stylesheet" type="text/css" href="jquery-ui.min.css"
+    
+</head>
+<body>
+    <h3 style="text-transform:uppercase; text-align: left;">date picker</h3>
+    <form>
+        <fieldset>
+            <legend align="bottam" style="text-transform: uppercase;font-size: 1.6em;">datepicker</legend>
+            D.O.B:   <input type="text" size="30" class="form-control" id="datepicker"><br>
+            
+        </fieldset>
+    </form>
+    <script src="jquery-3.6.0.min.js"></script>
+    <script src="jquery-ui.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#datepicker').datepicker({
+                dateFormat:"dd-mm-yy",
+                changeMonth:true,
+                changeYear:true
+            });
+        })
+    </script>
+</body>

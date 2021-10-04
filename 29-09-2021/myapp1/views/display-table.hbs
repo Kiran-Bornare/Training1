@@ -1,0 +1,47 @@
+<html>
+<body>
+        {{!-- {{ include('header') }} --}}
+        
+    <h1>Display Table</h1>
+    {{!-- <% if(user_array.length>0) { %> --}}
+    <table border='1'>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Mobile</th>
+            <th>Action</th>
+        </tr>
+        {{!-- <% for(var i=0; i<user_array.length;i++) { %>
+        <tr>
+            <td><%= i+1 %></td> 
+            <td><%= user_array[i].user_name %></td>
+            <td><%= user_array[i].user_mobile %></td>
+            
+            <td>
+                    <a href='/edit/{{ _id }}'>Edit</a> | 
+                    <a href='/delete/{{ _id }}'>Delete</a> |
+                    <a href='/show/{{_id }}'>Show</a>
+          
+          </td> --}}
+           {{#each user_array}}
+         <tr>
+            {{!-- <td>{{_id}}</td>  --}} 
+            <td>{{@index}}</td>
+            <td>{{user_name}}</td>
+            <td>{{user_mobile}}</td>
+            
+           
+            <td>
+                    <a href='/edit/_id'>Edit</a> | 
+                    <a href='/delete/_id' Onclick="ConfirmDelete()">Delete</a> |
+                    <a href='/show/_id'>Show</a>
+          
+          </td>
+        </tr>
+        {{/each}}
+        </tr>
+      
+    </table>
+    
+</body>
+</html>

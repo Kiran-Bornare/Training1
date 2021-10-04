@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <script type="text/javascript">
+            function ajaxcl()
+            {
+                var xhttp=new XMLHttpRequest();
+
+                xhttp.onreadystatechange = function()
+                {
+                    if(xhttp.readyState==4 && xhttp.status==200)
+                    {
+                        document.getElementById("demo").innerHTML=xhttp.responseText;
+                    }
+                    
+                };
+          xhttp.open("GET","file.txt",true)
+          xhttp.send();
+            }
+            
+        </script>
+        <title>Ajax File</title>
+    </head>
+    <body>
+        <div id="demo">How are you</div>
+        
+        <input type="button" value="Submit" onclick="ajaxcl()" >
+    </body>
+</html>

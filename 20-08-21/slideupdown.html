@@ -1,0 +1,17 @@
+<!DOCTYPE html> <html> <head> <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script> <script type="text/javascript"> $(document).ready(function(){
+    // Slide up displayed paragraphs
+    $(".btn-up").click(function(){
+    $("p").slideUp();
+    });
+    // Slide down hidden paragraphs
+    $(".btn-down").click(function(){
+    $("p").slideDown();
+    });
+    }); </script>
+    Akash Technolabs                                  www.akashsir.com
+    </head> <body>
+    <button type="button" class="btn-up">Slide Up</button> 
+    <button type="button" class="btn-down">Slide Down</button>
+    <p>This is a paragraph.</p>
+    <p>This is another paragraph.</p>
+    </body> </html>

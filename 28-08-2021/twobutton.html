@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <script>
+            function ajaxcl()
+            {
+                var xhttp=new XMLHttpRequest();
+
+                xhttp.onreadystatechange = function()
+                {
+                    if(xhttp.readyState==4 && xhttp.status==200)
+                    {
+                        document.getElementById("demo").innerHTML=xhttp.responseText
+                    }
+                    
+                };
+          xhttp.open("GET","file.txt",true)
+          xhttp.send();
+            }
+            function ajaxcl1()
+            {
+                var xhttp=new XMLHttpRequest();
+
+                xhttp.onreadystatechange = function()
+                {
+                    if(xhttp.readyState==4 && xhttp.status==200)
+                    {
+                        document.getElementById("demo").innerHTML=xhttp.responseText
+                    }
+                    
+                };
+          xhttp.open("GET","secondfile.txt",true)
+          xhttp.send();
+            }
+        </script>
+        <title>Ajax File</title>
+    </head>
+    <body>
+        <div id="demo"></div>
+        
+        <input type="button" onclick="ajaxcl()" value="First">
+        <input type="button" onclick="ajaxcl1()" value="Second">
+    </body>
+</html>
