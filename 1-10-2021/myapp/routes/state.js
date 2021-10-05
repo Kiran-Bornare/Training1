@@ -1,8 +1,4 @@
 
-
-
-
-
 var express = require('express');
 var router = express.Router();
 
@@ -13,6 +9,42 @@ var StateModel = require('../schema/state_table')
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
+});
+
+
+router.get('/get-state-api',function(req,res, next) {
+  StateModel.find({}, function(err,mydb1) {
+    if (err) {
+      res.send(JSON.stringify({'flag':0,'message':'Error in API','err' : err}));
+
+    }else {
+      res.send(JSON.stringify({'flag':1,'message':'data listing','data' : mydb1}));
+    }
+  });
+});
+
+
+
+
+
+
+
+router.post('add-state-api/:id',function(req, res, next) {
+  console.log(req.body);
+
+  const mybodydata = {
+    s_name: req.body.s_name,
+    _country: req.body._country
+  }
+  var data = StateModel(mybodydata);
+  data.save(function(err) {
+    if(err) {
+      res.send(JSON.stringify({'flag':0,'message':'Error in API','err' : err}));
+    } else {
+      res.send(JSON.stringify({'flag':1,'message':'record Added'}));
+    }
+  })
+  
 });
 
 router.get('/add', function(req, res, next) {

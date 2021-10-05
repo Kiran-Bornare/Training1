@@ -11,6 +11,39 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+router.get('/get-city-api',function(req,res, next) {
+  CityModel.find({}, function(err,mydb1) {
+    if (err) {
+      res.send(JSON.stringify({'flag':0,'message':'Error in API','err' : err}));
+
+    }else {
+      res.send(JSON.stringify({'flag':1,'message':'data listing','data' : mydb1}));
+    }
+  });
+});
+
+
+
+
+
+router.post('add-city-api/:id',function(req, res, next) {
+  console.log(req.body);
+
+  const mybodydata = {
+    city_name: req.body.city_name.city_name,
+
+  }
+  var data = CityModel(mybodydata);
+  data.save(function(err) {
+    if(err) {
+      res.send(JSON.stringify({'flag':0,'message':'Error in API','err' : err}));
+    } else {
+      res.send(JSON.stringify({'flag':1,'message':'record Added'}));
+    }
+  })
+  
+});
+
 router.get('/add', function(req, res, next) {
 
     StateModel.find(function(err, db_state_array) {

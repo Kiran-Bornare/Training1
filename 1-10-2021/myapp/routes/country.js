@@ -9,6 +9,45 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+
+router.get('/get-country-api',function(req,res, next) {
+  CountryModel.find({}, function(err,mydb1) {
+    if (err) {
+      res.send(JSON.stringify({'flag':0,'message':'Error in API','err' : err}));
+
+    }else {
+      res.send(JSON.stringify({'flag':1,'message':'data listing','data' : mydb1}));
+    }
+  });
+});
+
+
+
+
+
+
+
+router.post('add-country-api/:id',function(req, res, next) {
+  console.log(req.body);
+
+  const mybodydata = {
+    c_name: req.body.c_name,
+  
+}
+  var data = CountryModel(mybodydata);
+  data.save(function(err) {
+    if(err) {
+      res.send(JSON.stringify({'flag':0,'message':'Error in API','err' : err}));
+    } else {
+      res.send(JSON.stringify({'flag':1,'message':'record Added'}));
+    }
+  })
+  
+});
+
+
+
+
 router.get('/add', function(req, res, next) {
   res.render('country/add-country');
 });
@@ -21,9 +60,7 @@ router.post('/add', function(req, res, next) {
   //Create an Array 
   const mybodydata = {
     c_name: req.body.c_name,
-   
-    
-   
+  
 }
 var data = CountryModel(mybodydata);
  

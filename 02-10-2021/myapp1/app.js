@@ -10,10 +10,9 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/mydb')
-.then(()=>console.log("Connection Established"))
+mongoose.connect('mongodb://mydb1:mydb1@localhost:27017/mydb1')
+.then(()=>console.log("Connection Open"))
 .catch(()=>console.log("Error"))
-
 var app = express();
 
 // view engine setup

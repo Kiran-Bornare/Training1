@@ -12,7 +12,8 @@ const nodemailer = require("nodemailer");
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
+const fileUpload = require('express-fileupload');
+// var productRouter = require('./routes/') 
 
 
 var app = express();
@@ -26,21 +27,21 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-//Db Connection Start 
+app.use(fileUpload());
 app.use(session({
   secret: 'keyboard cat',
   resave: false,
   saveUninitialized: true,
   cookie: { maxAge: 600000 }
 }))
+
+
 //Db Connection Start 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/myproject', { useNewUrlParser: true })
-.then(() => console.log('connection succesful'))
-.catch((err) => console.error(err))
+mongoose.connect('mongodb://mydb1:mydb1@localhost:27017/mydb1')
+.then(()=>console.log("Connection Open"))
+.catch(()=>console.log("Error"))
 //DB Connection End
-
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -49,8 +50,6 @@ app.use('/users', usersRouter);
 app.use(function(req, res, next) {
   next(createError(404));
 });
-
-
 
 // error handler
 app.use(function(err, req, res, next) {

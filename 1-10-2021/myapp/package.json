@@ -11,7 +11,9 @@
     "express": "~4.16.1",
     "hbs": "~4.0.4",
     "http-errors": "~1.6.3",
-    "mongoose": "^6.0.8",
+    "mongo-express": "^1.0.0-alpha.4",
+    "mongodb": "^4.1.2",
+    "mongoose": "^6.0.9",
     "morgan": "~1.9.1"
   }
 }

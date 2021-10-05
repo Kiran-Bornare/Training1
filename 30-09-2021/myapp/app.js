@@ -27,9 +27,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //Db Connection Start 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/myproject5', { useNewUrlParser: true })
-.then(() => console.log('connection succesful'))
-.catch((err) => console.error(err)) 
+mongoose.connect('mongodb://mydb1:mydb1@localhost:27017/mydb1')
+.then(()=>console.log("Connection Open"))
+.catch(()=>console.log("Error"))
 //DB Connection End
 
 

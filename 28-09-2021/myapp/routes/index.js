@@ -191,31 +191,140 @@ main().catch(console.error);
  
   });
 });
+// router.get('/product', function(req, res, next) {
+//   res.send('product send');
+// });
 
 router.get('/product', function(req, res, next) {
-  res.render('product',{ title: 'Express' });
+  res.render('product');
 });
 
-router.post('/product', function (req, res, next) {
-  console.log(req.body);
+router.post('/add', function(req, res, next) {
+  var myfile = req.files.p_img;
+var myfilename = req.files.p_img.name;
+myfile.mv('public/images/'+myfilename, function(err) {
+  if (err)
+  throw err;
+  //res.send('File uploaded!');
+  });
 
-  //Create an Array 
-  const mybodydata1 = {
-    p_name : String,
-    p_details : String,
-    p_price : String,
-    p_img : String,
-    p_qty : String
+  console.log("File Send Success")
+  const mybodydata = {
+    p_name:req.body.p_name,
+    p_details:req.body.p_details,
+    p_price:req.body.p_price,
+    p_img:myfilename,
+    p_qty:req.body.p_qty
   }
-  var data = ProductModel(mybodydata1);
+  var data = ProductModel(mybodydata);
 
-  data.save(function (err) {
-    if (err) {
-      console.log("Error in Insert Record" + err);
-    } else {
-      res.render('product');
+  data.save(function(err){
+    if(err){
+      console.log("Error in Add Record" + err);
+    }else{
+      console.log("Record Added");
+      res.send("Record Successfully Added")
     }
   })
 
 });
+
+//Display
+router.get('/display-product', function (req, res, next) {
+
+  ProductModel.find(function (err, db_products_array) {
+    if (err) {
+      console.log("Error in Fetch Data " + err);
+    } else {
+      //Print Data in Console
+      console.log(db_products_array);
+      //Render User Array in HTML Table
+      res.render('display-product', { product_array: db_products_array });
+
+    }
+  });
+});
+
+//Get Single User for Edit Record
+router.get('/edit-product/:id', function (req, res) {
+
+  console.log(req.params.id);
+
+  ProductModel.findById(req.params.id, function (err, db_products_array) {
+    if (err) {
+      console.log("Edit Fetch Error " + err);
+    } else {
+      console.log(db_products_array);
+
+      res.render('edit-product', { product_array: db_products_array });
+    }
+  });
+});
+
+//Update Record Using Post Method
+router.post('/edit-product/:id', function (req, res) {
+
+  console.log("Edit ID is" + req.params.id);
+
+  const mybodydata1 = {
+    p_name : req.body.p_name,
+    p_details : req.body.p_details,
+    p_price : req.body.p_price,
+    p_img : req.body.p_img,
+    p_qty : req.body.p_qty
+  }
+
+  ProductModel.findByIdAndUpdate(req.params.id, mybodydata1, function (err) {
+    if (err) {
+      console.log("Error in Record Update");
+      res.redirect('/display-product');
+    } else {
+
+      res.redirect('/display-product');
+    }
+  });
+});
+
+//Get Single User By ID
+router.get('/show/:id', function (req, res) {
+  console.log(req.params.id);
+  ProductModel.findById(req.params.id, function (err, db_products_array) {
+    if (err) {
+      console.log("Error in Single Record Fetch" + err);
+    } else {
+      console.log(db_products_array);
+
+      res.render('single-record', { product_array: db_products_array });
+    }
+  });
+});
+
+//Delete User By ID
+router.get('/delete/:id', function (req, res) {
+  ProductModel.findOneAndDelete(req.params.id, function (err, project) {
+    if (err) {
+
+      console.log("Error in Record Delete " + err);
+      res.redirect('/display-product');
+    } else {
+
+      console.log(" Record Deleted ");
+      res.redirect('/display-product');
+    }
+  });
+});
+
+// router.get('/delete/:id', function (req, res, next) {
+//   var deleteid = req.params.id;
+//   ProductModel.findByIdAndDelete(deleteid, function (err, data) {
+//     if (err) {
+//       console.log("Error in Delete" + err);
+//     }
+//     else {
+//       console.log("Record Deleted " + deleteid);
+//       res.redirect('/view/display-product');
+//     }
+//   })
+//   res.render('add')
+// });
 module.exports = router;

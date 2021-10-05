@@ -8,8 +8,11 @@
   "dependencies": {
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
+    "epress": "^0.0.1-security",
     "express": "~4.16.1",
+    "express-fileupload": "^1.2.1",
     "express-session": "^1.17.2",
+    "fileupload": "^1.0.0",
     "hbs": "~4.0.4",
     "http-errors": "~1.6.3",
     "mongoose": "^6.0.8",
