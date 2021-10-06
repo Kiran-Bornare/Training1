@@ -91,6 +91,21 @@ router.get('/display-table', function (req, res, next) {
   });
 });
 
+router.get('/delete-user/:id', function (req, res) {
+  UsersModel.findOneAndDelete(req.params.id, function (err, project) {
+    if (err) {
+
+      console.log("Error in Record Delete " + err);
+      res.redirect('/display-table');
+    } else {
+
+      console.log(" Record Deleted ");
+      res.redirect('/display-table');
+    }
+  });
+});
+
+
 router.get('/home', function (req, res, next) {
 
   console.log("Home Called " + req.session.email);

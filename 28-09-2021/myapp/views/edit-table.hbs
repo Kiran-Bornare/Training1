@@ -1,0 +1,54 @@
+<html>
+<body style="background-color: cornflowerblue;">
+    <form method="post">
+        <h2>Signup</h2>
+        <table>
+            <tr>
+                <td><h3>Name</h3></td>
+                <td> <input type="text" placeholder="Enter Name" name="user_name" value="{{user_array.user_name}}"></td>
+            </tr>
+            <tr>
+                <td><h3>Gender</h3></td>
+                <td>
+                   <h4> <input type="radio" name="user_gender" value="Male"> Male</h4>
+                  <h4> <input type="radio" name="user_gender" value="Female"> Female</h4>
+                </td>
+            </tr>
+            <tr>
+                <td><h3>DOB</h3></td>
+                <td>
+                    <input type="date" name="user_dob" value="{{user_array.user_dob}}">
+                </td>
+            </tr>
+            <tr>
+                <td><h3>MobileNo</h3></td>
+                <td><input type="number" placeholder="Enter Mobile No" name="user_mobile" value="{{user_array.user_mobile"></td>
+            </tr>
+            <tr>
+                <td><h3>Email</h3></td>
+                <td><input type="text" placeholder="Enter Email" name="user_email" value="{{user_array.user_email}}"></td>
+            </tr>
+            <tr>
+                <td><h3>Password</h3></td>
+                <td><input type="text" placeholder="Enter Password" name="user_password" value="{{user_array.user_password}}"></td>
+            </tr>
+
+            <tr>
+                <td><h3>Are you Admin ?</h3></td>
+                <td> <select name="user_isadmin">
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td><input type="submit"></td>
+                <td><input type="reset"></td>
+            </tr>
+        </table>
+        <a href="/login">Login</a>
+    </form>
+</body>
+
+</html>

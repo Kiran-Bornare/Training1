@@ -5,6 +5,7 @@ var router = express.Router();
 var StateModel = require('../schema/state_table')
 //  var CountryModel = require('../schema/country_table');
  var CityModel = require('../schema/city_table');
+const { json } = require('express');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -26,11 +27,11 @@ router.get('/get-city-api',function(req,res, next) {
 
 
 
-router.post('add-city-api/:id',function(req, res, next) {
+router.post('/add-city-api',function(req, res, next) {
   console.log(req.body);
 
   const mybodydata = {
-    city_name: req.body.city_name.city_name,
+    city_name: req.body.city_name,
 
   }
   var data = CityModel(mybodydata);
@@ -43,6 +44,30 @@ router.post('add-city-api/:id',function(req, res, next) {
   })
   
 });
+
+router.delete('/delete-city-api',function(req,res, next) {
+  CityModel.findByIdAndRemove(req.body._id, function(err,mydb1) {
+    if (err) {
+      res.send(JSON.stringify({'flag':0,'message':'Error in API','err' : err}));
+
+    }else {
+      res.send(JSON.stringify({'flag':1,'message':'record deleted'}));
+    }
+  });
+});
+
+router.put('/update-city-api/:id',function(req,res, next) {
+  console.log(req.params.id);
+  CityModel.findByIdAndUpdate(req.params.id, req.body, function(err,post) {
+    if (err) {
+      res.send(JSON.stringify({'flag':0,'message':'Error in API','err' : err}));
+
+    }else {
+      res.send(JSON.stringify({'flag':1,'message':'record updated'}));
+    }
+  });
+});
+
 
 router.get('/add', function(req, res, next) {
 

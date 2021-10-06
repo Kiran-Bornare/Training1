@@ -23,27 +23,41 @@ router.get('/get-country-api',function(req,res, next) {
 
 
 
-
-
-
-
-router.post('add-country-api/:id',function(req, res, next) {
-  console.log(req.body);
-
+router.post('/add-country-api',function(req,res,next){
   const mybodydata = {
     c_name: req.body.c_name,
-  
-}
+  }
   var data = CountryModel(mybodydata);
-  data.save(function(err) {
-    if(err) {
-      res.send(JSON.stringify({'flag':0,'message':'Error in API','err' : err}));
-    } else {
-      res.send(JSON.stringify({'flag':1,'message':'record Added'}));
+
+  data.save(function(err){
+     if(err){
+      res.send(JSON.stringify({'flag':0,'message': 'Error in API ','err':err}));
+    }
+    else{
+      res.send(JSON.stringify({'flag':1,'message': 'Record Added  '}));
     }
   })
-  
 });
+
+
+
+// router.post('/add-country-api',function(req, res, next) {
+//   console.log(req.body);
+
+//   const mybodydata = {
+//     c_name: req.body.c_name,
+  
+// }
+//   var data = CountryModel(mybodydata);
+//   data.save(function(err) {
+//     if(err) {
+//       res.send(JSON.stringify({'flag':0,'message':'Error in API','err' : err}));
+//     } else {
+//       res.send(JSON.stringify({'flag':1,'message':'record Added'}));
+//     }
+//   })
+  
+// });
 
 
 
