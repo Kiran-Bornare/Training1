@@ -1,0 +1,32 @@
+<html>
+<body>
+       
+
+    <h1>Display Table</h1>
+     <table border='1'>
+        <tr>
+            <th>ID</th>
+            <th>Email </th>
+            <th>Password</th>
+            <th>File Image</th>
+            <th>Action</th>
+        </tr>
+        {{#each data}}
+        <tr>
+            {{!-- <td>{{ i+1 }}</td>  --}}
+             <td>{{_id}}</td>
+             <td>{{email}}</td> 
+             <td>{{password}} </td>
+             
+             <td><img src="/images/{{file}}" style="width: 100px;"></td> 
+             
+             <td> <a href="/edit-signup/{{_id }}">Edit</a> 
+                 <a href="/delete/{{ _id }}">Delete</a>
+                 <a href="/show/{{ _id }}">Show</a>
+            </td> 
+        </tr>
+        {{/each}}
+    </table>    
+
+</body>
+</html>
