@@ -81,7 +81,7 @@ router.post('/signup', function (req, res, next) {
       console.log("Record Added");
       res.send("Record Successfully Added")
     }
-  }).lean();
+  })
 
 });
 
@@ -93,8 +93,26 @@ router.get('/forgotpassword', function (req, res, next) {
 router.get('/changepassword', function (req, res, next) {
   res.render('changepassword');
 });
-router.get('/signupdisplay', function (req, res, next) {
-  res.render('signupdisplay');
+// router.get('/signupdisplay', function (req, res, next) {
+//   res.render('signupdisplay');
+// });
+
+router.get('/signupdisplay', function(req, res, next) {
+  AdminModel.find(function (err, data) {
+      if (err) {
+        console.log("Error in Fetch Data " + err);
+      } else {
+        //Print Data in Console
+        console.log(data);
+        //Render User Array in HTML Table
+        res.render('signupdisplay', { data: data });
+
+      }
+    }).lean();
 });
+
+module.exports = router;
+
+
 
 module.exports = router;

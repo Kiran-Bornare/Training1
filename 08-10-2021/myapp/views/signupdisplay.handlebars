@@ -1,15 +1,16 @@
 <html>
+    <center>
 <body>
        
 
-    <h1>Display Table</h1>
+    <label style="background-color: cadetblue;">Display Record</lagel>
      <table border='1'>
         <tr>
             <th>ID</th>
             <th>Email </th>
             <th>Password</th>
             <th>File Image</th>
-            <th>Action</th>
+            {{!-- <th>Action</th> --}}
         </tr>
         {{#each data}}
         <tr>
@@ -20,13 +21,14 @@
              
              <td><img src="/images/{{file}}" style="width: 100px;"></td> 
              
-             <td> <a href="/edit-signup/{{_id }}">Edit</a> 
+             {{!-- <td> <a href="/edit/signup/{{_id }}">Edit</a> 
                  <a href="/delete/{{ _id }}">Delete</a>
                  <a href="/show/{{ _id }}">Show</a>
-            </td> 
+            </td>  --}}
         </tr>
         {{/each}}
     </table>    
-
+      
 </body>
+</center>
 </html>
