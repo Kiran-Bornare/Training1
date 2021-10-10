@@ -11,7 +11,8 @@ var fileUpload = require('express-fileupload');
 var app = express();
 
 var mongoose = require('mongoose');
-var session = require('express-session')
+var session = require('express-session');
+const nodemailer = require("nodemailer");
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.engine('handlebars', exphbs({
@@ -21,6 +22,8 @@ app.engine('handlebars', exphbs({
 app.set('view engine', 'handlebars');
 	
 app.use(fileUpload());
+app.use(session({ secret: 'keyboard cat', cookie: { maxAge:
+  60000 }}))
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -28,7 +31,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 //connection
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://mydb1:mydb1@localhost:27017/mydb1')
+//mongoose.connect('mongodb://mydb1:mydb1@localhost:27017/mydb1')
+mongoose.connect('mongodb://localhost:27017/mydb1')
 .then(()=>console.log("Connection Open"))
 .catch(()=>console.log("Error"))
 
