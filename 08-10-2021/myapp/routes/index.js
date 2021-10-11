@@ -119,6 +119,7 @@ router.get('/login', function (req, res, next) {
 });
 
 router.post('/login', function (req, res, next) {
+<<<<<<< Updated upstream
 
   var email = req.body.user_email;
   var password = req.body.user_password;
@@ -155,8 +156,13 @@ router.post('/login', function (req, res, next) {
 
 
 // Add category
+=======
+>>>>>>> Stashed changes
 
+  var email = req.body.email;
+  var password = req.body.password;
 
+<<<<<<< Updated upstream
 
 
 
@@ -198,6 +204,41 @@ router.post('/login', function (req, res, next) {
 // }
 //   });
 // });
+=======
+  console.log(req.body);
+  AdminModel.findOne({ "email": email }, function (err, db_admin_array) {
+
+    console.log("Find One " + db_admin_array);
+
+    if (db_admin_array) {
+      var email = db_admin_array.email;
+      var password = db_admin_array.password;
+
+    }
+
+    console.log("db_admin_array.email " + email);
+    console.log("db_admin_array.password " + password);
+
+    if (email == null) {
+      console.log("If");
+      res.end("Email not Found");
+    }
+    else if (email == email && password == password) {
+      console.log("db_admin_array.email " + email);
+      req.session.email = email;
+      res.send('Login successfull');
+    }
+    else {
+      console.log("Credentials wrong");
+      res.end("Login invalid");
+    }
+  });
+});
+
+router.get('/signup', function (req, res, next) {
+  res.render('signup',);
+});
+>>>>>>> Stashed changes
 
 
 router.get('/signup', function (req, res, next) {
