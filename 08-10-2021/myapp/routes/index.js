@@ -66,7 +66,7 @@
 //     //res.send('File uploaded!');
 //   });
 
- 
+
 //   const mybodydata = {
 //     email: req.body.email,
 //     password: req.body.password,
@@ -101,6 +101,8 @@
 
 
 var express = require('express');
+// const category = require('../schema/category');
+var CategoryModel = require('../schema/category');
 var router = express.Router();
 
 var AdminModel = require('../schema/signup');
@@ -112,7 +114,7 @@ router.get('/', function (req, res, next) {
 });
 
 
-router.get('/login', function(req, res, next) {
+router.get('/login', function (req, res, next) {
   res.render('login');
 });
 
@@ -124,34 +126,78 @@ router.post('/login', function (req, res, next) {
   console.log(req.body);
   AdminModel.findOne({ "email": email }, function (err, db_admin_array) {
 
-console.log("Find One " + db_admin_array);
+    console.log("Find One " + db_admin_array);
 
-if (db_admin_array) {
-  var db_email = db_admin_array.email;
-  var db_password = db_admin_array.password;
+    if (db_admin_array) {
+      var db_email = db_admin_array.email;
+      var db_password = db_admin_array.password;
 
-}
+    }
 
-console.log("db_admin_array.email " + db_email);
-console.log("db_admin_array.password " + db_password);
+    console.log("db_admin_array.email " + db_email);
+    console.log("db_admin_array.password " + db_password);
 
-if (db_email == null ) {
-  console.log("If");
-  res.end("Email not Found");
-}
-else if ( db_email == email && db_password == password ) {
-  // console.log("db_admin_array.email " + email);
-  req.session.email = db_email;
-  res.send('Login successfull');
-}
-else {
-  console.log("Credentials wrong");
-  res.end("Login invalid");
-}
+    if (db_email == null) {
+      console.log("If");
+      res.end("Email not Found");
+    }
+    else if (db_email == email && db_password == password) {
+      // console.log("db_admin_array.email " + email);
+      req.session.email = db_email;
+      res.send('Login successfull');
+    }
+    else {
+      console.log("Credentials wrong");
+      res.end("Login invalid");
+    }
   });
 });
 
 
+// Add category
+
+
+
+
+
+// router.get('/login', function(req, res, next) {
+//   res.render('login');
+// });
+
+// router.post('/login', function (req, res, next) {
+
+//   var email = req.body.user_email;
+//   var password = req.body.user_password;
+
+//   console.log(req.body);
+//   AdminModel.findOne({ "email": email }, function (err, db_admin_array) {
+
+// console.log("Find One " + db_admin_array);
+
+// if (db_admin_array) {
+//   var db_email = db_admin_array.email;
+//   var db_password = db_admin_array.password;
+
+// }
+
+// console.log("db_admin_array.email " + db_email);
+// console.log("db_admin_array.password " + db_password);
+
+// if (db_email == null ) {
+//   console.log("If");
+//   res.end("Email not Found");
+// }
+// else if ( db_email == email && db_password == password ) {
+//   // console.log("db_admin_array.email " + email);
+//   req.session.email = db_email;
+//   res.send('Login successfull');
+// }
+// else {
+//   console.log("Credentials wrong");
+//   res.end("Login invalid");
+// }
+//   });
+// });
 
 
 router.get('/signup', function (req, res, next) {
@@ -168,7 +214,7 @@ router.post('/signup', function (req, res, next) {
     //res.send('File uploaded!');
   });
 
- 
+
   const mybodydata = {
     email: req.body.email,
     password: req.body.password,
@@ -190,116 +236,153 @@ router.post('/signup', function (req, res, next) {
 
 //forgot password
 
-router.get('/forgot', function(req, res, next) {
+router.get('/forgot', function (req, res, next) {
   res.render('forgot');
 });
 //Login Process  Method
 router.post('/forgot', function (req, res, next) {
 
-  var email = req.body.email; 
+  var email = req.body.email;
 
   console.log(req.body);
   AdminModel.findOne({ "email": email }, function (err, db_signup_array) {
 
-console.log("Find One " + db_signup_array);
+    console.log("Find One " + db_signup_array);
 
-if ( db_signup_array) {
-  var email =  db_signup_array.email;
-  var password =  db_signup_array.password;
+    if (db_signup_array) {
+      var email = db_signup_array.email;
+      var password = db_signup_array.password;
 
-}
-
-console.log(" db_signup_array.email " + email);
-console.log(" db_signup_array.password " + password);
-
-if (email == null) {
-  console.log("If");
-  res.end("Email not Found");
-}
-else if (email == email) {
-  "use strict";
-const nodemailer = require("nodemailer");
-
-// async..await is not allowed in global scope, must use a wrapper
-async function main(){
-
-  // Generate test SMTP service account from ethereal.email
-  // Only needed if you don't have a real mail account for testing
-  let account = await nodemailer.createTestAccount();
-
-  // create reusable transporter object using the default SMTP transport
-  let transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 587,
-    secure: false, // true for 465, false for other ports
-    auth: {
-      user: "doctorsonclick123@gmail.com", // generated ethereal user
-      pass: "doconclick123" // generated ethereal password
     }
-  });
 
-  // setup email data with unicode symbols
-  let mailOptions = {
-    from: "demo830870@gmail.com", // sender address
-    to: email, // list of receivers
-    subject: "Forgot Password", // Subject line
-    text: "Hello your password is "  + password, // plain text body
-    html: "Hello your password is "  + password // html body
-  };
+    console.log(" db_signup_array.email " + email);
+    console.log(" db_signup_array.password " + password);
 
-  // send mail with defined transport object
-  let info = await transporter.sendMail(mailOptions)
+    if (email == null) {
+      console.log("If");
+      res.end("Email not Found");
+    }
+    else if (email == email) {
+      "use strict";
+      const nodemailer = require("nodemailer");
 
-  console.log("Message sent: %s", info.messageId);
-  // Preview only available when sending through an Ethereal account
-  console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+      // async..await is not allowed in global scope, must use a wrapper
+      async function main() {
 
-  res.end("Password Sent on your Email");
-  // Message sent: b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com
-  // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
-}
+        // Generate test SMTP service account from ethereal.email
+        // Only needed if you don't have a real mail account for testing
+        let account = await nodemailer.createTestAccount();
 
-main().catch(console.error);
+        // create reusable transporter object using the default SMTP transport
+        let transporter = nodemailer.createTransport({
+          host: "smtp.gmail.com",
+          port: 587,
+          secure: false, // true for 465, false for other ports
+          auth: {
+            user: "doctorsonclick123@gmail.com", // generated ethereal user
+            pass: "doconclick123" // generated ethereal password
+          }
+        });
 
-  
-}
-else {
-  console.log("Credentials wrong");
-  res.end("Login invalid");
-}
+        // setup email data with unicode symbols
+        let mailOptions = {
+          from: "kiranbornare88@gmail.com", // sender address
+          to: email, // list of receivers
+          subject: "Forgot Password", // Subject line
+          text: "Hello your password is " + password, // plain text body
+          html: "Hello your password is " + password // html body
+        };
 
- 
-  });
-});
+        // send mail with defined transport object
+        let info = await transporter.sendMail(mailOptions)
 
-router.get('/changepassword', function (req, res, next) {
-  res.render('changepassword');
-});
-// router.get('/signupdisplay', function (req, res, next) {
-//   res.render('signupdisplay');
-// });
+        console.log("Message sent: %s", info.messageId);
+        // Preview only available when sending through an Ethereal account
+        console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
 
-router.get('/signupdisplay', function(req, res, next) {
-  AdminModel.find(function (err, data) {
-      if (err) {
-        console.log("Error in Fetch Data " + err);
-      } else {
-        //Print Data in Console
-        console.log(data);
-        //Render User Array in HTML Table
-        res.render('signupdisplay', { data: data });
-
-
+        res.end("Password Sent on your Email");
+        // Message sent: b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com
+        // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
       }
-    }).lean();
 
-  }
-}).lean();
+      main().catch(console.error);
+
+
+    }
+    else {
+      console.log("Credentials wrong");
+      res.end("Login invalid");
+    }
+
+
+  });
 });
 
-module.exports = router;
+//change password
+router.get('/changepassword', function (req, res, next) {
+    res.render('changepassword');
+  });
+  
+  
+  router.post('/changepassword', function (req, res, next) {
+    if (!req.session.email) {
+      console.log("Email Session is set")
+      res.redirect('/Login');
+  }
+  console.log("Home Called" +req.session.email);
+    var myemail = req.session.email;
+    var opass = req.body.opass;
+    var npass = req.body.npass;
+    var cpass = req.body.cpass;
+
+AdminModel.findOne({"email" : myemail}, function(err, db_admin_array){
+
+  if(err){
+    console.log("Error in old password Fetch"+err)
+  }else{
+    console.log(db_admin_array);
+
+  if(opass == db_admin_array.password){
+    if(opass == npass)
+    {
+      res.end("New password diffrent from old password");
+    }else{
+      if(npass == cpass){
+        AdminModel.findOneAndUpdate({"email": myemail},{$set: {"password": npass}},function(err){
+          if(err){
+            res.end("Error in update"+err);
+          }else{
+            res.end("Password changed")
+          }
+        });
+      }else{
+        res.end("new password confirm password not matc");
+      }
+    }
+  }else{
+    res.end("old password not match");
+  }
+  }
+});
+});
 
 
 
-module.exports = router;
+router.get('/signupdisplay', function (req, res, next) {
+  AdminModel.find(function (err, data) {
+    if (err) {
+      console.log("Error in Fetch Data " + err);
+    } else {
+      //Print Data in Console
+      console.log(data);
+      //Render User Array in HTML Table
+      res.render('signupdisplay', { data: data });
+
+
+    }
+  }).lean();
+
+
+});
+
 module.exports = router;

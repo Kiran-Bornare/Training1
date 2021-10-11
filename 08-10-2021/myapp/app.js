@@ -6,11 +6,16 @@ var logger = require('morgan');
 const exphbs = require('express-handlebars');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var adminRouter = require('./routes/admin');
+//var adminRouter = require('./routes/admin');
 var fileUpload = require('express-fileupload');
+var categoryRouter = require('./routes/category');
+var subcategoryRouter = require('./routes/subcategory');
 var app = express();
 
 var mongoose = require('mongoose');
+
+//category
+
 var session = require('express-session');
 const nodemailer = require("nodemailer");
 // view engine setup
@@ -31,13 +36,15 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 //connection
 mongoose.Promise = global.Promise;
-//mongoose.connect('mongodb://mydb1:mydb1@localhost:27017/mydb1')
-mongoose.connect('mongodb://localhost:27017/mydb1')
+mongoose.connect('mongodb://mydb1:mydb1@localhost:27017/mydb1')
+//mongoose.connect('mongodb://localhost:27017/mydb1')
 .then(()=>console.log("Connection Open"))
 .catch(()=>console.log("Error"))
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/category', categoryRouter);
+app.use('/subcategory', subcategoryRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
